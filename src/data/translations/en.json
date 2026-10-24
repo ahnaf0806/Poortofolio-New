@@ -1,0 +1,32 @@
+{
+  "app": { "name": "Nafora.Labs", "tagline": "Personal Developer Hub" },
+  "nav": {
+    "profile": "Profile",
+    "projects": "Projects",
+    "academic": "Academic",
+    "terminal": "Terminal",
+    "contact": "Contact"
+  },
+  "profile": {
+    "role": "Full-Stack Developer",
+    "bio": "I am a developer focused on building interactive, performant, and accessible web interfaces.",
+    "downloadCV": "Download CV",
+    "contactMe": "Contact Me",
+    "skills": "Technical Skills",
+    "experience": "Experience",
+    "present": "Present"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "subtitle": "Some of the best projects I have worked on.",
+    "all": "All",
+    "web": "Web App",
+    "mobile": "Mobile",
+    "tools": "Tools",
+    "viewDemo": "Live Demo",
+    "viewCode": "Source Code"
+  },
+  "academic": { "title": "Academic" },
+  "terminal": { "title": "Terminal" },
+  "contact": { "title": "Contact" }
+}

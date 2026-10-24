@@ -1,111 +1,305 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+/* ============================================
+   DevOS Design System
+   Adapted from Meta DESIGN.md + Blue Accent
+   Light & Dark Mode Support
+   ============================================ */
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  /* --- Font Families --- */
+  --font-sans:
+    "Inter", "Optimistic VF", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  /* --- Border Radius (from DESIGN.md rounded scale) --- */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px; /* photographic cards (xxxl in Meta) */
+  --radius-feature: 40px; /* accessory hero panels */
+  --radius-full: 100px; /* pill buttons, badges, tabs */
+  --radius-circle: 9999px; /* circular icons, swatches */
+
+  /* --- Spacing (from DESIGN.md spacing scale) --- */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 10px;
+  --spacing-md: 12px;
+  --spacing-base: 16px;
+  --spacing-lg: 20px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  --spacing-3xl: 40px;
+  --spacing-section-sm: 48px;
+  --spacing-section: 64px;
+  --spacing-section-lg: 80px;
+  --spacing-hero: 120px;
+
+  /* --- Accent Cobalt Blue (Lebih Pekat & Saturasi Tinggi - Meta Style) --- */
+  --color-accent: #0064e0; /* Cobalt Primary: Biru sangat pekat dan dalam */
+  --color-accent-deep: #0457cb; /* Deep Cobalt: Untuk hover/pressed state */
+  --color-accent-soft: #0091ff; /* Soft Cobalt: Untuk background tint / dark mode */
+  --color-accent-hover: #0047b3; /* Darker Cobalt: Untuk hover effect */
+  --color-on-accent: #ffffff; /* Teks di atas aksen biru */
+
+  /* --- Light Mode Colors (adapted from Meta light theme) --- */
+  --color-canvas: #ffffff;
+  --color-surface-soft: #f1f4f7;
+  --color-surface-card: #ffffff;
+  --color-ink-deep: #0a1317;
+  --color-ink: #1c1e21;
+  --color-charcoal: #444950;
+  --color-slate: #4b4c4f;
+  --color-steel: #5d6c7b;
+  --color-stone: #8595a4;
+  --color-hairline: #ced0d4;
+  --color-hairline-soft: #dee3e9;
+  --color-disabled-text: #bcc0c4;
+
+  /* --- Semantic Colors --- */
+  --color-success: #31a24c;
+  --color-attention: #f2a918;
+  --color-warning: #f7b928;
+  --color-critical: #e41e3f;
+  --color-critical-strong: #f0284a;
+
+  /* --- Typography Scale (from DESIGN.md, using Inter) --- */
+  --text-hero-display: 64px;
+  --text-display-lg: 48px;
+  --text-heading-lg: 36px;
+  --text-heading-md: 28px;
+  --text-heading-sm: 24px;
+  --text-subtitle-lg: 18px;
+  --text-subtitle-md: 18px;
+  --text-body-md-bold: 16px;
+  --text-body-md: 16px;
+  --text-body-sm-bold: 14px;
+  --text-body-sm: 14px;
+  --text-caption-bold: 12px;
+  --text-caption: 12px;
+  --text-button-md: 14px;
+
+  /* --- Shadows --- */
+  --shadow-card: rgba(20, 22, 26, 0.08) 0px 1px 4px 0px;
+  --shadow-elevated: rgba(20, 22, 26, 0.12) 0px 4px 12px 0px;
+  --shadow-window: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/* ============================================
+   Dark Mode Token Overrides
+   ============================================ */
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+[data-theme="dark"] {
+  --color-accent: #3385ff; /* Bright Cobalt: Agar kontras di latar gelap */
+  --color-accent-deep: #0064e0; /* Standard Cobalt: Untuk pressed state */
+  --color-accent-soft: #66a3ff; /* Lighter Cobalt: Untuk tint background */
+  --color-accent-hover: #0052cc;
+
+  --color-canvas: #0f172a;
+  --color-surface-soft: #1e293b;
+  --color-surface-card: #1e293b;
+  --color-ink-deep: #f8fafc;
+  --color-ink: #e2e8f0;
+  --color-charcoal: #cbd5e1;
+  --color-slate: #94a3b8;
+  --color-steel: #64748b;
+  --color-stone: #475569;
+  --color-hairline: #334155;
+  --color-hairline-soft: #1e293b;
+  --color-disabled-text: #334155;
+
+  --color-success: #22c55e;
+  --color-attention: #f59e0b;
+  --color-warning: #fbbf24;
+  --color-critical: #ef4444;
+  --color-critical-strong: #dc2626;
+
+  --shadow-card: rgba(0, 0, 0, 0.4) 0px 1px 4px 0px;
+  --shadow-elevated: rgba(0, 0, 0, 0.5) 0px 4px 12px 0px;
+  --shadow-window: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+/* ============================================
+   Base Styles
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 body {
-  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "ss02"; /* Meta-style stylistic sets */
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
+/* ============================================
+   Typography Utility Classes (Meta hierarchy)
+   ============================================ */
+
+.text-hero-display {
+  font-size: var(--text-hero-display);
   font-weight: 500;
-  color: var(--text-h);
+  line-height: 1.16;
+  letter-spacing: -0.02em;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+.text-display-lg {
+  font-size: var(--text-display-lg);
+  font-weight: 500;
+  line-height: 1.17;
+  letter-spacing: -0.02em;
+}
+
+.text-heading-lg {
+  font-size: var(--text-heading-lg);
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+}
+
+.text-heading-md {
+  font-size: var(--text-heading-md);
+  font-weight: 300;
+  line-height: 1.21;
+  letter-spacing: -0.01em;
+}
+
+.text-heading-sm {
+  font-size: var(--text-heading-sm);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.text-subtitle-lg {
+  font-size: var(--text-subtitle-lg);
+  font-weight: 700;
+  line-height: 1.44;
+}
+
+.text-subtitle-md {
+  font-size: var(--text-subtitle-md);
+  font-weight: 400;
+  line-height: 1.44;
+}
+
+.text-body-md {
+  font-size: var(--text-body-md);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+}
+
+.text-body-md-bold {
+  font-size: var(--text-body-md-bold);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+}
+
+.text-body-sm {
+  font-size: var(--text-body-sm);
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: -0.14px;
+}
+
+.text-body-sm-bold {
+  font-size: var(--text-body-sm-bold);
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: -0.14px;
+}
+
+.text-caption {
+  font-size: var(--text-caption);
+  font-weight: 400;
+  line-height: 1.33;
+}
+
+.text-caption-bold {
+  font-size: var(--text-caption-bold);
+  font-weight: 700;
+  line-height: 1.33;
+}
+
+.text-button-md {
+  font-size: var(--text-button-md);
+  font-weight: 700;
+  line-height: 1.43;
+  letter-spacing: -0.14px;
+}
+
+/* ============================================
+   Interactive States
+   ============================================ */
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-hairline);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-steel);
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
+/* ============================================
+   Selection
+   ============================================ */
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
 }

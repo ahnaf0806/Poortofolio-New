@@ -1,0 +1,32 @@
+{
+  "app": { "name": "Nafora.Labs", "tagline": "Personal Developer Hub" },
+  "nav": {
+    "profile": "Profil",
+    "projects": "Proyek",
+    "academic": "Akademik",
+    "terminal": "Terminal",
+    "contact": "Kontak"
+  },
+  "profile": {
+    "role": "Full-Stack Developer",
+    "bio": "Saya adalah developer yang berfokus pada pembangunan antarmuka web yang interaktif, performant, dan mudah diakses.",
+    "downloadCV": "Unduh CV",
+    "contactMe": "Hubungi Saya",
+    "skills": "Keahlian Teknis",
+    "experience": "Pengalaman",
+    "present": "Sekarang"
+  },
+  "projects": {
+    "title": "Proyek Unggulan",
+    "subtitle": "Beberapa proyek terbaik yang pernah saya kerjakan.",
+    "all": "Semua",
+    "web": "Web App",
+    "mobile": "Mobile",
+    "tools": "Tools",
+    "viewDemo": "Lihat Demo",
+    "viewCode": "Kode Sumber"
+  },
+  "academic": { "title": "Akademik" },
+  "terminal": { "title": "Terminal" },
+  "contact": { "title": "Kontak" }
+}
